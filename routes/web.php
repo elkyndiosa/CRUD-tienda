@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Auth::routes();
+Route::get('/{option?}', function () {
     return view('home');
 });
 
-Auth::routes();
+
