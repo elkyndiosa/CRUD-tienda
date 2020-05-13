@@ -1,0 +1,15 @@
+<template>
+    <div class="row justify-content-center">
+        <transition name='slide-fade' mode='out-in'>
+            <router-view :key="$route.fullPath"></router-view>
+        </transition>
+    </div>
+</template>
+
+<script>
+    export default {
+        mounted() {
+            console.log('Component mounted.')
+        }
+    }
+</script>
