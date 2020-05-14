@@ -65,6 +65,9 @@
                 axios.post(url, formdata).then(response => {
                      this.product= {'name': '','nombre': '','sku': '','descripción': '','valor': ''};
                      this.image= '';
+                     var dir= 'http://localhost/tienda-prueba/public/store/'+this.id;
+                     console.log(dir);
+                     $(location).attr('href', dir);
                 }).catch(error =>{
                     console.log(error.response);
                 });

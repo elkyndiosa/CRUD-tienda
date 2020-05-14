@@ -5,7 +5,7 @@
 			<h4 class="text-center">No existen tiendas registradas</h4>
 		</div>
 		<div v-else>
-			<div class="card mt-4" v-for="store in stores">
+     		<div class="card mt-1" v-for="store in stores">
 				<div class="card-body d-flex justify-content-around">
 					<h5 class="card-title text-left col-7 m-0" v-text="store.name">
 					</h5>
@@ -20,7 +20,8 @@
         data(){
             return{
                 url_base: 'http://localhost/tienda-prueba/public',
-                stores: ''
+                stores: '',
+                searchs_id: ''
             };
         },
         created(){

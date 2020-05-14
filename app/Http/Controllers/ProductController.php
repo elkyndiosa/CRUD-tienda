@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-class ProductController extends Controller
-{
-
-    public function index(){
-        //
-    }
+class ProductController extends Controller{
     public function create(Request $request){
         //validate inf
         $this->validate($request, [
@@ -45,43 +40,44 @@ class ProductController extends Controller
         return $image;
 
     }
-
-    public function store(Request $request)
-    {
-        //
+    public function edit(Request $request){
+        //validate inf
+        $this->validate($request, [
+            'name' => ['required'],
+            'sku' => ['required'],
+            'description' => ['required'],
+            'value' => ['required'],
+        ]);
+        //get data of frontend
+        $id = $request->id;
+        $name = $request->name;
+        $sku = $request->sku;
+        $description = $request->description;
+        $value = $request->value;
+        $product = Product::findOrFail($id);
+        if($request->image != ''){
+            $image = $request->image;
+            $image_path = time() . $image->getClientOriginalName();
+            $image_save = File::get($image);
+            Storage::disk('public')->put($image_path, $image_save);
+            $image_prev = $request->image_prev;
+            Storage::delete($image_prev);
+            $product->image_path = $image_path;
+        }
+        $product->name = $name;
+        $product->sku = $sku;
+        $product->description = $description;
+        $product->value = $value;
+        $product->update();
     }
-
-    public function show(Product $product)
-    {
-        //
+    public function delete($id){
+        $product = Product::findOrFail($id);
+        $product->delete();
     }
-
-
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+    public function getProduct($id){
+        $product = Product::findOrFail($id);
+        if(isset($product)){
+            return $product;
+        }
     }
 }
