@@ -8,7 +8,7 @@ use App\Product;
 class StoreController extends Controller
 {
     public function index(){
-        $stores = Store::orderBy('id', 'DESC')->get();
+        $stores = Store::orderBy('id', 'ASC')->get();
         return $stores;
     }
 

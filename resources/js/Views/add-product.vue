@@ -33,6 +33,7 @@
 </template>
 <script>
     export default {
+        props: ['id'],
         data(){
             return{
                 product: {
@@ -40,7 +41,7 @@
                     'nombre': '',
                     'sku': '',
                     'descripción': '',
-                    'valor': '',
+                    'valor': ''
                 },
                 image: ''
             };
@@ -60,11 +61,12 @@
                 formdata.append('description', this.product.description);
                 formdata.append('value', this.product.value);
                 formdata.append('image', this.image);
+                formdata.append('store_id', this.id);
                 axios.post(url, formdata).then(response => {
-                    console.log(response);
-                    // window.location.href = "http://localhost/tienda-prueba/public/";
+                     this.product= {'name': '','nombre': '','sku': '','descripción': '','valor': ''};
+                     this.image= '';
                 }).catch(error =>{
-                    console.log(error);
+                    console.log(error.response);
                 });
             },
         }

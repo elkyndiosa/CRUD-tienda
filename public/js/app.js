@@ -1966,6 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['id'],
   data: function data() {
     return {
       product: {
@@ -1985,6 +1986,8 @@ __webpack_require__.r(__webpack_exports__);
       // $('#img-show').hide();
     },
     addproduct: function addproduct() {
+      var _this = this;
+
       var url = 'http://localhost/tienda-prueba/public/api/add-product';
       var formdata = new FormData();
       formdata.append('name', this.product.name);
@@ -1992,10 +1995,18 @@ __webpack_require__.r(__webpack_exports__);
       formdata.append('description', this.product.description);
       formdata.append('value', this.product.value);
       formdata.append('image', this.image);
+      formdata.append('store_id', this.id);
       axios.post(url, formdata).then(function (response) {
-        console.log(response); // window.location.href = "http://localhost/tienda-prueba/public/";
+        _this.product = {
+          'name': '',
+          'nombre': '',
+          'sku': '',
+          'descripción': '',
+          'valor': ''
+        };
+        _this.image = '';
       })["catch"](function (error) {
-        console.log(error);
+        console.log(error.response);
       });
     }
   }
@@ -38078,7 +38089,7 @@ var render = function() {
           "router-link",
           {
             staticClass: "btn btn-outline-success",
-            attrs: { to: { name: "add-product" } }
+            attrs: { to: { name: "add-product", params: { id: this.id } } }
           },
           [_vm._v("Agregar producto")]
         )
@@ -53379,9 +53390,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: __webpack_require__(/*! ./views/store */ "./resources/js/views/store.vue")["default"],
     props: true
   }, {
-    path: '/tienda-prueba/public/add-product',
+    path: '/tienda-prueba/public/add-product/:id',
     name: 'add-product',
-    component: __webpack_require__(/*! ./views/add-product */ "./resources/js/views/add-product.vue")["default"]
+    component: __webpack_require__(/*! ./views/add-product */ "./resources/js/views/add-product.vue")["default"],
+    props: true
   }],
   mode: 'history'
 }));

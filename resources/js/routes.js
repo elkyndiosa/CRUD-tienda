@@ -20,10 +20,11 @@ export default new Router({
 			props: true
 		},
 		{
-			path: '/tienda-prueba/public/add-product',
+			path: '/tienda-prueba/public/add-product/:id',
 			name: 'add-product',
-			component: require('./views/add-product').default
-		},
+			component: require('./views/add-product').default,
+			props: true
+		}
 	],
 	mode: 'history'
 })
