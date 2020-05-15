@@ -2120,6 +2120,8 @@ __webpack_require__.r(__webpack_exports__);
     var url = this.url_base + '/api/stores';
     axios.get(url).then(function (response) {
       _this.stores = response.data;
+    })["catch"](function (error) {
+      console.log(error.response);
     });
   }
 });
@@ -2135,6 +2137,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2232,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.products = response.data.products;
       console.log(_this.products);
     })["catch"](function (error) {
-      console.log(error);
+      console.log(error.response);
     });
   },
   methods: {
@@ -37822,7 +37828,7 @@ var render = function() {
     "div",
     { staticClass: "row justify-content-center" },
     [
-      _c("div", { staticClass: "jumbotron-fluid pb-3 pt-4" }, [
+      _c("div", { staticClass: "jumbotron-fluid pb-3 pt-4 px-5 px-md-3" }, [
         _c("h5", {}, [_vm._v("Aqui puedes buscar tiendas por id")]),
         _vm._v(" "),
         _c("p", [
@@ -37836,7 +37842,8 @@ var render = function() {
         _c(
           "form",
           {
-            staticClass: "form-inline",
+            staticClass:
+              "form-inline d-flex justify-content-center justify-content-md-end",
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -37844,7 +37851,7 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "form-group col-6" }, [
+            _c("div", { staticClass: "form-group col-12 col-md-5 px-0" }, [
               _c("input", {
                 directives: [
                   {
@@ -37854,7 +37861,7 @@ var render = function() {
                     expression: "searchs_id"
                   }
                 ],
-                staticClass: "form-control w-50 mr-3 col-12",
+                staticClass: "form-control mr-3 col-12",
                 attrs: {
                   type: "number",
                   placeholder: "Ingrese id de producto",
@@ -37874,7 +37881,10 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "form-group" },
+              {
+                staticClass:
+                  "form-group col-8 col-md-3 col-md-1 mt-2 mt-md-0 px-0"
+              },
               [
                 _c(
                   "router-link",
@@ -38296,17 +38306,27 @@ var render = function() {
             _c(
               "tbody",
               _vm._l(_vm.products, function(product, index) {
-                return _c("tr", [
+                return _c("tr", { staticClass: "text-center" }, [
                   _c("th", {
                     attrs: { scope: "row" },
-                    domProps: { textContent: _vm._s(product.sku) }
+                    domProps: { textContent: _vm._s(product.name) }
                   }),
                   _vm._v(" "),
-                  _c("td", { domProps: { textContent: _vm._s(product.name) } }),
+                  _c("td", { domProps: { textContent: _vm._s(product.sku) } }),
                   _vm._v(" "),
                   _c("td", {
                     domProps: { textContent: _vm._s(product.value) }
                   }),
+                  _vm._v(" "),
+                  _c("td", {}, [
+                    _c("img", {
+                      staticClass: "img-fluid img-show d-block m-auto",
+                      attrs: {
+                        src: "data:image/jpg;base64," + product.image_path,
+                        alt: ""
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _c(
@@ -38561,12 +38581,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("SKU")]),
-        _vm._v(" "),
+      _c("tr", { staticClass: "text-center" }, [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("SKU")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Valor")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Imagen")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])

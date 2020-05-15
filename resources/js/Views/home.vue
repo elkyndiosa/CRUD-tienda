@@ -28,6 +28,8 @@
             let url = this.url_base+'/api/stores'
             axios.get(url).then(response => {
                this.stores = response.data
+            }).catch(error =>{
+                console.log(error.response);
             });
         }
     }

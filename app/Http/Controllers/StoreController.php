@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Store;
-use Illuminate\Http\Request;
+use Request;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
+use App\log;
+use Illuminate\Support\Facades\Http;
 class StoreController extends Controller
 {
     public function index(){
@@ -23,21 +26,20 @@ class StoreController extends Controller
     public function get($id){
         $store = Store::findOrFail($id);
         $products = Product::where('store_id', $id)->orderBy('id', 'DESC')->get();
+        foreach($products as $product) {
+            $image = Storage::disk('public')->get($product->image_path);
+            $image_base64 = base64_encode($image);
+            $product->image_path = $image_base64;
+        }
+        //datos para log
+        $log = new log();
+        $log->ip = Request::ip();
+        $log->type_service = Request::method();
+        $log->controler = 'StoreControler';
+        $url = Request::fullUrl();
+        $log->store_id = $id;
+        $log->save();
+
         return response()->json(['products' => $products, 'store' => $store]);
-    }
-
-    public function edit(Store $store)
-    {
-        //
-    }
-
-    public function update(Request $request, Store $store)
-    {
-        //
-    }
-
-    public function destroy(Store $store)
-    {
-        //
     }
 }

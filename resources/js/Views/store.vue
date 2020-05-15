@@ -10,18 +10,22 @@
         <div v-else>
             <table class="table table-striped table-dark mt-4">
                 <thead>
-                    <tr>
-                        <th scope="col">SKU</th>
+                    <tr class="text-center">
                         <th scope="col">Nombre</th>
+                        <th scope="col">SKU</th>
                         <th scope="col">Valor</th>
+                        <th scope="col">Imagen</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(product, index) in products">
-                        <th scope="row" v-text="product.sku"></th>
-                        <td v-text="product.name"></td>
+                    <tr v-for="(product, index) in products" class="text-center">
+                        <th scope="row" v-text="product.name"></th>
+                        <td v-text="product.sku"></td>
                         <td v-text="product.value"></td>
+                        <td class="">
+                            <img class="img-fluid img-show d-block m-auto" :src="'data:image/jpg;base64,'+ product.image_path" alt="">
+                        </td>
                         <td>
                             <a class="mx-1 btn" @click="edit(index, product.id)"><i class='fas fa-edit'></i></a>
                             <a class="mx-1 btn" @click="pr_delete(index, product.id)"><i class='fas fa-trash'></i></a>
@@ -94,7 +98,7 @@
                this.products = response.data.products;
                console.log(this.products);
             }).catch(error =>{
-                console.log(error);
+                console.log(error.response);
             });
         },
           methods:{
