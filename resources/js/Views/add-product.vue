@@ -7,7 +7,7 @@
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="name">Nombre de producto</label>
-                        <input type="text" class="form-control" id="name" placeholder="Escriba el nombre del producto aqui" v-model="product.name" required>
+                        <input type="text" class="form-control input-edit" id="name" placeholder="Escriba el nombre del producto aqui" v-model="product.name" required>
                     </div>
                     <div class="form-group">
                         <label for="sku">SKU</label>
@@ -21,11 +21,12 @@
                         <label for="value">Valor</label>
                         <input type="number" class="form-control" id="value" placeholder="Valor del producto" v-model="product.value" required>
                     </div>
-                    <div class="form-group">
-                        <label for="image">Ingrese imagen</label>
-                        <input type="file" class="form-control" id="image" required @change="getImage">
+                    <div class="custom-file my-4">
+                        <input type="file" class="custom-file-input" required required @change="getImage">
+                        <label class="custom-file-label">Ingrese imagen...</label>
                     </div>
-                    <button type="submit" @click.prevent="addproduct" class="btn btn-primary">Agregar producto</button>
+
+                    <button type="submit" @click.prevent="addproduct" class="btn btn-outline-primary">Agregar producto</button>
                 </form>
 			</div>
 		</div>

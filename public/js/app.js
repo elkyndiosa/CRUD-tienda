@@ -1980,6 +1980,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
   data: function data() {
@@ -37851,7 +37852,7 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "form-group col-12 col-md-5 px-0" }, [
+            _c("div", { staticClass: "form-group col-12 col-md-5" }, [
               _c("input", {
                 directives: [
                   {
@@ -37883,13 +37884,13 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "form-group col-8 col-md-3 col-md-1 mt-2 mt-md-0 px-0"
+                  "form-group col-8 col-md-3 mt-2 mt-md-0 px-0 ml-md-4"
               },
               [
                 _c(
                   "router-link",
                   {
-                    staticClass: "btn btn-success form-control",
+                    staticClass: "btn btn-outline-success col-12",
                     attrs: {
                       to: { name: "store", params: { id: _vm.searchs_id } }
                     }
@@ -37961,7 +37962,7 @@ var render = function() {
                   expression: "product.name"
                 }
               ],
-              staticClass: "form-control",
+              staticClass: "form-control input-edit",
               attrs: {
                 type: "text",
                 id: "name",
@@ -38074,22 +38075,22 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "image" } }, [
-              _vm._v("Ingrese imagen")
-            ]),
-            _vm._v(" "),
+          _c("div", { staticClass: "custom-file my-4" }, [
             _c("input", {
-              staticClass: "form-control",
-              attrs: { type: "file", id: "image", required: "" },
+              staticClass: "custom-file-input",
+              attrs: { type: "file", required: "", required: "" },
               on: { change: _vm.getImage }
-            })
+            }),
+            _vm._v(" "),
+            _c("label", { staticClass: "custom-file-label" }, [
+              _vm._v("Ingrese imagen...")
+            ])
           ]),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "btn btn-primary",
+              staticClass: "btn btn-outline-primary",
               attrs: { type: "submit" },
               on: {
                 click: function($event) {

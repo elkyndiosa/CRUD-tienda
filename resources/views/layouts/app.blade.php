@@ -22,7 +22,7 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm fixed-top">
             <div class="container">
                 <router-link :to="{name: 'home'}" class="navbar-brand">Tienda Gustavo Diosa</router-link>
 
@@ -73,7 +73,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 mt-4">
             @yield('content')
         </main>
     </div>

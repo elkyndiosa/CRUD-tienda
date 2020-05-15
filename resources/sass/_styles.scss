@@ -1,3 +1,45 @@
+body{
+	background-image: url("http://localhost/tienda-prueba/public/storage/bg.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff !important;
+}
 .img-show{
 	height: 90px !important;
+}
+.card{
+	background-color: rgba(0, 0, 0, .4) !important;
+}
+.table-dark {
+    color: #fff;
+    background-color: rgba(0, 0, 0, .4) !important;
+}
+
+.form-control{
+	color: #fff !important;
+	border:none !important;
+    border-bottom: 1px solid #fff !important;
+    width:90% !important;
+    background:none !important;
+    outline:0 !important;
+    margin:10px !important;
+    padding: 10px !important;
+}
+.custom-file-label, .custom-file-label::after {
+    background-color: transparent !important;
+}
+.navbar{
+	background-color: rgba(0, 0, 0, .4) !important;
+}
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, .4) !important;
+}
+.dropdown-item{
+    color: #fff !important;
+}
+.dropdown-item:hover{
+	background: rgba(0, 0, 0, .4) !important;
+	color:  #f4f4f4 !important;
 }
