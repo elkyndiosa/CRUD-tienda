@@ -1,5 +1,7 @@
 <template>
     <div class="row justify-content-center">
+        <transition name='slide-fade' mode='out-in'>
+        <header>
         <div class="jumbotron-fluid pb-3 pt-4 px-5 px-md-3">
             <h5 class="">Aqui puedes buscar tiendas por id</h5>
             <p>Si utilizo los seedors de la instalacion, las tiendas creados tienen id desde 1 hasta el 20</p>
@@ -13,6 +15,8 @@
                 </div>
             </form>
         </div>
+        </header>
+        </transition>
         <transition name='slide-fade' mode='out-in'>
             <router-view :key="$route.fullPath"></router-view>
         </transition>

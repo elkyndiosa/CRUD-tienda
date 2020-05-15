@@ -37,7 +37,6 @@ class ProductController extends Controller{
         $product->image_path = $image_path;
         $product->store_id = $store_id;
         $product->save();
-        return $image;
 
     }
     public function edit(Request $request){
@@ -77,7 +76,7 @@ class ProductController extends Controller{
     public function getProduct($id){
         $product = Product::findOrFail($id);
         if(isset($product)){
-            return $product;
+            return response()->json(['product' => $product]);
         }
     }
 }

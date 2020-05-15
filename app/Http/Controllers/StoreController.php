@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Store;
-use Request;
+use Illuminate\Http\Request;
 use App\Product;
 use Illuminate\Support\Facades\Storage;
 use App\log;
@@ -16,6 +16,9 @@ class StoreController extends Controller
     }
 
     public function create(Request $request){
+        $this->validate($request, [
+            'name' => ['required'],
+        ]);
         $name = $request->name;
         $store = new Store();
         $store->name = $name;
@@ -33,10 +36,9 @@ class StoreController extends Controller
         }
         //datos para log
         $log = new log();
-        $log->ip = Request::ip();
-        $log->type_service = Request::method();
+        $log->ip = $_SERVER['REMOTE_ADDR'];
+        $log->type_service = 'GET';
         $log->controler = 'StoreControler';
-        $url = Request::fullUrl();
         $log->store_id = $id;
         $log->save();
 

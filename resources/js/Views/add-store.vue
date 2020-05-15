@@ -9,6 +9,9 @@
                         <label for="name">Nombre de tienda</label>
                         <input type="text" class="form-control" id="name" placeholder="Escriba el nombre de su tienda aqui" v-model="name" required>
                     </div>
+                    <div class="error" v-if="error.name">
+                        <p class="text-danger" v-text="error.name[0]"></p>
+                    </div>
                     <button type="submit" @click.prevent="addstore" class="btn btn-primary">Agregar tienda</button>
                 </form>
 			</div>
@@ -19,7 +22,8 @@
     export default {
         data(){
             return{
-                name: ''
+                name: '',
+                error: ''
             };
         },
         methods:{
@@ -30,7 +34,7 @@
                 axios.post(url, formdata).then(response => {
                     window.location.href = "http://localhost/tienda-prueba/public/";
                 }).catch(error =>{
-                    console.log(error);
+                    this.error = error.response.data.errors;
                 });
             },
         }

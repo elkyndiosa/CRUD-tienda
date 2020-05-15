@@ -8,23 +8,40 @@
                     <div class="form-group">
                         <label for="name">Nombre de producto</label>
                         <input type="text" class="form-control input-edit" id="name" placeholder="Escriba el nombre del producto aqui" v-model="product.name" required>
+                        <div class="error" v-if="error.name">
+                            <p class="text-danger" v-text="error.name[0]"></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="sku">SKU</label>
                         <input type="text" class="form-control" id="sku" placeholder="ingrese SKU" v-model="product.sku" required>
+                        <div class="error" v-if="error.sku">
+                            <p class="text-danger" v-text="error.sku[0]"></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion</label>
                         <textarea class="form-control" placeholder="Escriba la descripcion del producto aqui" id="descripcion" v-model="product.description" required></textarea>
+                        <div class="error" v-if="error.description">
+                            <p class="text-danger" v-text="error.description[0]"></p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="value">Valor</label>
                         <input type="number" class="form-control" id="value" placeholder="Valor del producto" v-model="product.value" required>
+                        <div class="error" v-if="error.value">
+                            <p class="text-danger" v-text="value.description[0]"></p>
+                        </div>
+
                     </div>
                     <div class="custom-file my-4">
                         <input type="file" class="custom-file-input" required required @change="getImage">
                         <label class="custom-file-label">Ingrese imagen...</label>
                     </div>
+                    <div class="error" v-if="error.image">
+                        <p class="text-danger" v-text="error.image[0]"></p>
+                    </div>
+
 
                     <button type="submit" @click.prevent="addproduct" class="btn btn-outline-primary">Agregar producto</button>
                 </form>
@@ -44,7 +61,8 @@
                     'descripción': '',
                     'valor': ''
                 },
-                image: ''
+                image: '',
+                error: ''
             };
         },
         methods:{
@@ -67,10 +85,9 @@
                      this.product= {'name': '','nombre': '','sku': '','descripción': '','valor': ''};
                      this.image= '';
                      var dir= 'http://localhost/tienda-prueba/public/store/'+this.id;
-                     console.log(dir);
                      $(location).attr('href', dir);
                 }).catch(error =>{
-                    console.log(error.response);
+                    this.error = error.response.data.errors;
                 });
             },
         }

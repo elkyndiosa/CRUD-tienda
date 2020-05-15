@@ -88,18 +88,23 @@
                 store: '',
                 products: '',
                 product_edit: '',
-                image_new: ''
+                image_new: '',
+                result: ''
             };
         },
         created(){
-            let url = this.url_base+'/api/store/'+this.id;
-            axios.get(url).then(response => {
-               this.store = response.data.store;
-               this.products = response.data.products;
-               console.log(this.products);
-            }).catch(error =>{
-                console.log(error.response);
-            });
+            if(this.id == ''){
+                result: false;
+            }else{
+                let url = this.url_base+'/api/store/'+this.id;
+                axios.get(url).then(response => {
+                   this.store = response.data.store;
+                   this.products = response.data.products;
+                   console.log(this.products);
+                }).catch(error =>{
+                    console.log(error.response);
+                });
+            }
         },
           methods:{
             pr_delete(index, id){

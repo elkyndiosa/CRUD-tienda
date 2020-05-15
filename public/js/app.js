@@ -1928,6 +1928,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1981,6 +1985,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
   data: function data() {
@@ -1992,7 +2013,8 @@ __webpack_require__.r(__webpack_exports__);
         'descripción': '',
         'valor': ''
       },
-      image: ''
+      image: '',
+      error: ''
     };
   },
   methods: {
@@ -2022,10 +2044,9 @@ __webpack_require__.r(__webpack_exports__);
         };
         _this.image = '';
         var dir = 'http://localhost/tienda-prueba/public/store/' + _this.id;
-        console.log(dir);
         $(location).attr('href', dir);
       })["catch"](function (error) {
-        console.log(error.response);
+        _this.error = error.response.data.errors;
       });
     }
   }
@@ -2059,21 +2080,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: ''
+      name: '',
+      error: ''
     };
   },
   methods: {
     addstore: function addstore() {
+      var _this = this;
+
       var url = 'http://localhost/tienda-prueba/public/api/add-store';
       var formdata = new FormData();
       formdata.append('name', this.name);
       axios.post(url, formdata).then(function (response) {
         window.location.href = "http://localhost/tienda-prueba/public/";
       })["catch"](function (error) {
-        console.log(error);
+        _this.error = error.response.data.errors;
       });
     }
   }
@@ -2227,20 +2254,25 @@ __webpack_require__.r(__webpack_exports__);
       store: '',
       products: '',
       product_edit: '',
-      image_new: ''
+      image_new: '',
+      result: ''
     };
   },
   created: function created() {
     var _this = this;
 
-    var url = this.url_base + '/api/store/' + this.id;
-    axios.get(url).then(function (response) {
-      _this.store = response.data.store;
-      _this.products = response.data.products;
-      console.log(_this.products);
-    })["catch"](function (error) {
-      console.log(error.response);
-    });
+    if (this.id == '') {
+      result: false;
+    } else {
+      var url = this.url_base + '/api/store/' + this.id;
+      axios.get(url).then(function (response) {
+        _this.store = response.data.store;
+        _this.products = response.data.products;
+        console.log(_this.products);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
   },
   methods: {
     pr_delete: function pr_delete(index, id) {
@@ -37829,79 +37861,83 @@ var render = function() {
     "div",
     { staticClass: "row justify-content-center" },
     [
-      _c("div", { staticClass: "jumbotron-fluid pb-3 pt-4 px-5 px-md-3" }, [
-        _c("h5", {}, [_vm._v("Aqui puedes buscar tiendas por id")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "Si utilizo los seedors de la instalacion, las tiendas creados tienen id desde 1 hasta el 20"
-          )
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "my-4" }),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            staticClass:
-              "form-inline d-flex justify-content-center justify-content-md-end",
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group col-12 col-md-5" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.searchs_id,
-                    expression: "searchs_id"
-                  }
-                ],
-                staticClass: "form-control mr-3 col-12",
-                attrs: {
-                  type: "number",
-                  placeholder: "Ingrese id de producto",
-                  id: "id"
-                },
-                domProps: { value: _vm.searchs_id },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.searchs_id = $event.target.value
-                  }
-                }
-              })
+      _c("transition", { attrs: { name: "slide-fade", mode: "out-in" } }, [
+        _c("header", [
+          _c("div", { staticClass: "jumbotron-fluid pb-3 pt-4 px-5 px-md-3" }, [
+            _c("h5", {}, [_vm._v("Aqui puedes buscar tiendas por id")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Si utilizo los seedors de la instalacion, las tiendas creados tienen id desde 1 hasta el 20"
+              )
             ]),
             _vm._v(" "),
+            _c("hr", { staticClass: "my-4" }),
+            _vm._v(" "),
             _c(
-              "div",
+              "form",
               {
                 staticClass:
-                  "form-group col-8 col-md-3 mt-2 mt-md-0 px-0 ml-md-4"
+                  "form-inline d-flex justify-content-center justify-content-md-end",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                  }
+                }
               },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-outline-success col-12",
+                _c("div", { staticClass: "form-group col-12 col-md-5" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchs_id,
+                        expression: "searchs_id"
+                      }
+                    ],
+                    staticClass: "form-control mr-3 col-12",
                     attrs: {
-                      to: { name: "store", params: { id: _vm.searchs_id } }
+                      type: "number",
+                      placeholder: "Ingrese id de producto",
+                      id: "id"
+                    },
+                    domProps: { value: _vm.searchs_id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchs_id = $event.target.value
+                      }
                     }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "form-group col-8 col-md-3 mt-2 mt-md-0 px-0 ml-md-4"
                   },
-                  [_vm._v("Buscar")]
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-outline-success col-12",
+                        attrs: {
+                          to: { name: "store", params: { id: _vm.searchs_id } }
+                        }
+                      },
+                      [_vm._v("Buscar")]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
+              ]
             )
-          ]
-        )
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -37978,7 +38014,16 @@ var render = function() {
                   _vm.$set(_vm.product, "name", $event.target.value)
                 }
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.error.name
+              ? _c("div", { staticClass: "error" }, [
+                  _c("p", {
+                    staticClass: "text-danger",
+                    domProps: { textContent: _vm._s(_vm.error.name[0]) }
+                  })
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38009,7 +38054,16 @@ var render = function() {
                   _vm.$set(_vm.product, "sku", $event.target.value)
                 }
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.error.sku
+              ? _c("div", { staticClass: "error" }, [
+                  _c("p", {
+                    staticClass: "text-danger",
+                    domProps: { textContent: _vm._s(_vm.error.sku[0]) }
+                  })
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38041,7 +38095,16 @@ var render = function() {
                   _vm.$set(_vm.product, "description", $event.target.value)
                 }
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.error.description
+              ? _c("div", { staticClass: "error" }, [
+                  _c("p", {
+                    staticClass: "text-danger",
+                    domProps: { textContent: _vm._s(_vm.error.description[0]) }
+                  })
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -38072,7 +38135,16 @@ var render = function() {
                   _vm.$set(_vm.product, "value", $event.target.value)
                 }
               }
-            })
+            }),
+            _vm._v(" "),
+            _vm.error.value
+              ? _c("div", { staticClass: "error" }, [
+                  _c("p", {
+                    staticClass: "text-danger",
+                    domProps: { textContent: _vm._s(_vm.value.description[0]) }
+                  })
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "custom-file my-4" }, [
@@ -38086,6 +38158,15 @@ var render = function() {
               _vm._v("Ingrese imagen...")
             ])
           ]),
+          _vm._v(" "),
+          _vm.error.image
+            ? _c("div", { staticClass: "error" }, [
+                _c("p", {
+                  staticClass: "text-danger",
+                  domProps: { textContent: _vm._s(_vm.error.image[0]) }
+                })
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
@@ -38170,6 +38251,15 @@ var render = function() {
               }
             })
           ]),
+          _vm._v(" "),
+          _vm.error.name
+            ? _c("div", { staticClass: "error" }, [
+                _c("p", {
+                  staticClass: "text-danger",
+                  domProps: { textContent: _vm._s(_vm.error.name[0]) }
+                })
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
