@@ -10,12 +10,17 @@
 					<h5 class="card-title text-left col-7 m-0" v-text="store.name">
 					</h5>
                     <router-link :to="{name: 'store', params: {id: store.id}}" class="btn btn-outline-success col-3">Ver tienda</router-link>
+
 				</div>
+                <div class="card-footer">
+                    <span class="text-muted float-right" v-text="time_human(store.created_at)"></span>
+                </div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+    import moment from 'moment'
     export default {
         data(){
             return{
@@ -31,6 +36,12 @@
             }).catch(error =>{
                 console.log(error.response);
             });
+        },
+        methods:{
+            time_human(date){
+                let new_d = moment(date).fromNow();
+                return 'Created '+new_d;
+            },
         }
     }
 </script>
