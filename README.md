@@ -2,7 +2,7 @@
 <ul>
 	<li>
 		<h5>Clonar respositorio</h5>
-		<p>Agregar repositorio en la carpeta raiz de tu servidor local</p>
+		<p>Agregar repositorio en la carpeta raiz de tu servidor local. la carperta debe tener como nombre tienda-prueba para quedar con la mismas URL</p>
 	</li>
 	<li>
 		<h5>Crear base de datos</h5>
@@ -18,6 +18,6 @@
 	</li>
 	<li>
 		<h5>Abrir proyecto en el navegador</h5>
-		<p>Ahora esta tu proyecto configurado. Si realizo todo al pie de la letra deberia ingresar con este link: <a href="http://localhost/CRUD-tienda-master/public/">http://localhost/CRUD-tienda-master/public/</a></p>
+		<p>Ahora esta tu proyecto configurado. Si realizo todo al pie de la letra deberia ingresar con este link: <a href="http://localhost/tienda-prueba/public/">http://localhost/tienda-prueba/public/</a></p>
 	</li>
 </ul>
