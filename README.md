@@ -14,7 +14,7 @@
 	</li>
 	<li>
 		<h5>Crear tablas y datos de prueba</h5>
-		<p>Abrir terminar de su preferencia y ubicarse dentro del proyecto, una vez aqui se deben instalar los paquetes necesario y proveedores, para esto ejecutar el comando <pre>composer install</pre> Luego creamos las tablas de nuestra base de datos con el comando <pre> php artisan migrate</pre> seguido del ultimo comando para crear los datos de prueba <pre>php artisan db:seed</pre></p>
+		<p>Abrir terminar de su preferencia y ubicarse dentro del proyecto, una vez aqui se deben instalar los paquetes necesario y proveedores, para esto ejecutar el comando <pre>composer install</pre> Luego creamos las tablas de nuestra base de datos con el comando <pre> php artisan migrate</pre> ahora el comando para crear los datos de prueba <pre>php artisan db:seed</pre> Y finalizando creando clave para la palicacion <pre>php artisan key:generate</pre></p>
 	</li>
 	<li>
 		<h5>Abrir proyecto en el navegador</h5>
