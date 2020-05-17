@@ -59510,9 +59510,12 @@ var render = function() {
                   _vm.product_edit
                     ? _c("div", { staticClass: "w-25" }, [
                         _c("img", {
-                          staticClass: "img-fluid",
+                          staticClass: "img-fluid img-show d-block m-auto",
                           attrs: {
-                            src: "../storage/" + _vm.product_edit.image_path
+                            src:
+                              "data:image/jpg;base64," +
+                              _vm.product_edit.image_path,
+                            alt: ""
                           }
                         })
                       ])

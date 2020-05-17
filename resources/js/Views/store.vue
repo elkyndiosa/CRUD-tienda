@@ -66,8 +66,8 @@
                                 <input type="file" class="form-control" id="image" @change="getImage" required>
                             </div>
                             <div class="w-25" v-if="product_edit">
-                                <img :src="'../storage/'+product_edit.image_path" class="img-fluid">
-                            </div>
+                                <img class="img-fluid img-show d-block m-auto" :src="'data:image/jpg;base64,'+ product_edit.image_path" alt="">
+                              </div>
                         </form>
                     </div>
                     <div class="modal-footer">

@@ -17,9 +17,10 @@ body {
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.table-dark {
+.table-dark,
+.modal-content {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .form-control {

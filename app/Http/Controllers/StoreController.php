@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 class StoreController extends Controller
 {
     public function index(){
-        $stores = Store::orderBy('id', 'ASC')->get();
+        $stores = Store::orderBy('id', 'DESC')->get();
         return $stores;
     }
 
